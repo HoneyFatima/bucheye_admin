@@ -1,0 +1,80 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\AreaManagementController;
+use App\Http\Controllers\DeliveryBoyController;
+use App\Http\Controllers\ManageCustomerController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AppSettingController;
+use App\Http\Controllers\CouponCategoryController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponsController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\FamilyAttributeController;
+use App\Http\Controllers\ProductAttributeController;
+use App\Http\Controllers\ProductFamilyController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UnitTypeController;
+use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HotProductController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\TopSellersController;
+use App\Http\Controllers\UserWalletController;
+
+Route::group(['prefix'=>'admin','middleware' => ['auth']], function() {
+    Route::get('/', [HomeController::class,'index'])->name('admin');
+    Route::resource('admin', AdminController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('banner', BannerController::class);
+    Route::resource('category', CategoryController::class);
+    Route::get('category_child', [CategoryController::class,'getChildCategory'])->name('subcategory.get');
+    Route::resource('vendor', VendorController::class);
+    Route::resource('transaction', TransactionController::class);
+    Route::resource('areaManagement', AreaManagementController::class);
+    Route::resource('deliveryBoy', DeliveryBoyController::class);
+    Route::resource('manageCustomer', ManageCustomerController::class);
+    Route::resource('coupons', CouponsController::class);
+    Route::resource('unitType', UnitTypeController::class);
+    Route::resource('hot_products', HotProductController::class);
+    Route::resource('top-sellers', TopSellersController::class);
+    Route::get('manage-website-setting', [AppSettingController::class,'websiteSetting'])->name('manage-website-setting');
+    Route::post('manage-website-setting/store', [AppSettingController::class,'websiteSettingUpdate'])->name('manage-website-setting.store');
+
+    Route::resource('product-family', ProductFamilyController::class);
+    Route::resource('product-attribute', ProductAttributeController::class);
+    Route::get('product-attribute/delete/{id}', [ProductAttributeController::class,'attributeValueDelete'])->name('attributeValue.delete');
+    Route::get('product/attribute', [FamilyAttributeController::class,'getFamilyAttributeByFamilyId'])->name('product.attribute');
+    Route::resource('family-attribute', FamilyAttributeController::class);
+    Route::resource('product', ProductController::class);
+    Route::post('product/bulk-status-update', [ProductController::class,'bulkStatusUpdate'])->name('status.update.product');
+    Route::post('product/image/update/{id}', [ProductController::class,'updateProductImage'])->name('product.image.update');
+    Route::get('product/image/delete/{id}', [ProductController::class,'deleteProductImage'])->name('productImage.delete');
+
+    Route::post('product/video/update/{id}', [ProductController::class,'updateProductVideo'])->name('product.video.update');
+    Route::get('product/video/delete/{id}', [ProductController::class,'deleteProductVideo'])->name('product.video.delete');
+    Route::resource('product-assign', AreaManagementController::class);
+    Route::get('getProductByCategoryId', [ProductController::class,'getProductByCategoryId']);
+    Route::get('getCommentById', [CommentController::class,'getCommentById']);
+    Route::resource('blog', BlogsController::class);
+    Route::resource('notification', NotificationController::class);
+    Route::resource('orders', OrdersController::class);
+    Route::get('orders_details', [OrdersController::class,'getOrderDetails'])->name('get.order.details');
+    Route::resource('userWallet', UserWalletController::class);
+    Route::get('manage-user-setting', [AppSettingController::class,'userAppSetting'])->name('manage-user-setting');
+    Route::post('manage-user-setting-store', [AppSettingController::class,'updateUserAppSetting'])->name('manage-user-setting.store');
+    Route::get('manage-vendor-setting', [AppSettingController::class,'vendorAppSetting'])->name('manage-vendor-setting');
+    Route::post('manage-vendor-setting-store', [AppSettingController::class,'updateVendorAppSetting'])->name('manage-vendor-setting.store');
+    Route::get('manage-delivery-boy-setting', [AppSettingController::class,'DeliveryBoyAppSetting'])->name('manage-delivery-boy-setting');
+    Route::post('manage-delivery-boy-setting-store', [AppSettingController::class,'updateDeliveryBoyAppSetting'])->name('manage-delivery-boy-setting.store');
+    Route::get('getOrderDetailsModelById', [OrdersController::class,'getOrderDetailsModelById']);
+
+});

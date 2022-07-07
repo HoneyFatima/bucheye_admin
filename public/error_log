@@ -1,0 +1,8 @@
+[16-Mar-2022 12:02:39 UTC] PHP Warning:  require(/home2/easylif6/public_html/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home2/easylif6/public_html/public/index.php on line 34
+[16-Mar-2022 12:02:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/easylif6/public_html/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home2/easylif6/public_html/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home2/easylif6/public_html/public/index.php on line 34
+[16-Mar-2022 12:12:13 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.4.0". You are running 7.3.33. in /home2/easylif6/public_html/vendor/composer/platform_check.php on line 24
+[16-Mar-2022 12:12:17 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.4.0". You are running 7.3.33. in /home2/easylif6/public_html/vendor/composer/platform_check.php on line 24
+[16-Mar-2022 12:12:22 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.4.0". You are running 7.3.33. in /home2/easylif6/public_html/vendor/composer/platform_check.php on line 24

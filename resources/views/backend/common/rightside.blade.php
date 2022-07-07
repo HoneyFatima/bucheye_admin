@@ -1,0 +1,3 @@
+@section('rightside')
+
+@endsection

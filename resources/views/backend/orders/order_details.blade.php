@@ -53,12 +53,12 @@
                         <tr>
                             <td>{{ @$ord->product_quantity }}
                             <td>
-                                <img src="{{ $ord->product->thumnails ? url($ord->product->thumnails) : '' }}"
-                                    alt="{{ $ord->product->name }}" width="30px;">
-                                {{ $ord->product->name }}
+                                <img src="{{ $ord->product ? url($ord->product->thumnails) : '' }}"
+                                    alt="{{ @$ord->product->name }}" width="30px;">
+                                {{ @$ord->product->name }}
                             </td>
-                            <td>{{ $ord->product->user->name }}</td>
-                            <td> ₹ {{ $ord->product_price + $ord->discount_price }}
+                            <td>{{ @$ord->product->user->name }}</td>
+                            <td> ₹ {{ @$ord->product_price + @$ord->discount_price }}
                             </td>
                             <td> ₹ {{ $ord->discount_price }}
                             </td>
